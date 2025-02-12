@@ -51,3 +51,13 @@ class ActionResponse(BaseModel):
 
     # tags is always required
     tags: Optional[dict[str, str]] = None
+
+
+class ActionListItemResponse(BaseModel):
+    url: Optional[str] = None
+    content_length: Optional[int] = None
+    redirects: Optional[list[str]] = None
+    status_code: Optional[int] = None
+
+    # tags is always required
+    tags: Optional[dict[str, str]] = None

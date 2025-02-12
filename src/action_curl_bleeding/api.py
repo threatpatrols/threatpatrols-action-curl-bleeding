@@ -5,9 +5,7 @@
 
 from fastapi import FastAPI
 
-from threatpatrols_action.api import ActionRoutes, add_redirect_route
-from threatpatrols_action.api.lib.openapi_schema import custom_openapi
-from threatpatrols_action.api.middlewares import load_middlewares
+from threatpatrols_action.api import ActionRoutes, load_fastapi_components
 from threatpatrols_action.exceptions import generate_api_exception_response_handlers
 from threatpatrols_action.shared.lib.logger_init import logger_get, logger_setlevel
 
@@ -27,18 +25,11 @@ app = FastAPI(
     exception_handlers=generate_api_exception_response_handlers(),
 )
 
-# Load routes
+# Load the action routes
 action_routes = ActionRoutes(action=curl_bleeding)
-app.include_router(action_routes.router)
 
-# Load middleware
-load_middlewares(app=app)
-
-# Apply redirects
-add_redirect_route(app, request_path="/", redirect_url="/docs", tags=["System"], summary="Redirect to docs.")
-
-# Customize the OpenAPI schema
-app.openapi_schema = custom_openapi(app)
+# Load the remaining FastAPI components
+load_fastapi_components(app=app, action_routes=action_routes)
 
 if __name__ == "__main__":
     import uvicorn
