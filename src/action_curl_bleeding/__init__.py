@@ -8,7 +8,7 @@ __version__ = "0.1.0"
 
 from threatpatrols_action import action_models, config
 
-from .actions.models import ActionRequest, ActionResponse, ActionListItemResponse
+from .actions.models import ActionListItemResponse, ActionRequest, ActionResponse
 
 config.TITLE = __title__
 config.VERSION = __version__

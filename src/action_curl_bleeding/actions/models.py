@@ -3,12 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
-class ActionRequest(BaseModel):
-
-    url: str
-    referer: Optional[str] = None
-    user_agent: Optional[str] = None
-    proxy: Optional[str] = None
+class ActionBaseModel(BaseModel):
 
     # tags is always required
     tags: Optional[dict[str, str]] = None
@@ -16,6 +11,14 @@ class ActionRequest(BaseModel):
     def model_post_init(self, *_, **__) -> None:
         if not self.tags:
             self.tags = {}
+
+
+class ActionRequest(ActionBaseModel):
+
+    url: str
+    referer: Optional[str] = None
+    user_agent: Optional[str] = None
+    proxy: Optional[str] = None
 
     model_config = ConfigDict(
         extra="forbid",
@@ -31,7 +34,7 @@ class ActionRequest(BaseModel):
     )
 
 
-class ActionResponse(BaseModel):
+class ActionResponse(ActionBaseModel):
     url: Optional[str] = None
 
     content_b64: Optional[str] = None
@@ -49,15 +52,9 @@ class ActionResponse(BaseModel):
     log_messages: Optional[list[str]] = None
     error_messages: Optional[list[str]] = None
 
-    # tags is always required
-    tags: Optional[dict[str, str]] = None
 
-
-class ActionListItemResponse(BaseModel):
+class ActionListItemResponse(ActionBaseModel):
     url: Optional[str] = None
     content_length: Optional[int] = None
     redirects: Optional[list[str]] = None
     status_code: Optional[int] = None
-
-    # tags is always required
-    tags: Optional[dict[str, str]] = None
