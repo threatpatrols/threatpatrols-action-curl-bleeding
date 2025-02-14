@@ -1,0 +1,34 @@
+import uuid
+
+from .. import AUTH_TOKEN, BASE_ACTION, BASE_URL
+from . import HttpxClient
+
+
+def test_calls_post_and_get():
+
+    tags = {"nonce-test-tag": uuid.uuid4().hex}
+    content_type = "application/json"
+    headers = {"Authorization": f"Bearer {AUTH_TOKEN}", "Content-Type": content_type, "Accept": content_type}
+    payload = {
+        "url": "https://google.com",
+        "referer": "https://www.google.com/",
+        "tags": tags,
+    }
+
+    response = HttpxClient(headers=headers).post(url=f"{BASE_URL}/{BASE_ACTION}/calls", json=payload)
+    assert response.status_code == 200
+
+    data = response.json()
+    assert data.get("tags", {}).get("nonce-test-tag") == tags.get("nonce-test-tag")
+
+    # ===
+
+    call_id = data.get("tags", {}).get("call_id")
+
+    response2 = HttpxClient(headers=headers).get(url=f"{BASE_URL}/{BASE_ACTION}/calls/{call_id}", json=payload)
+    assert response2.status_code == 200
+
+    data2 = response2.json()
+    assert data2.get("tags", {}).get("nonce-test-tag") == tags.get("nonce-test-tag")
+
+    assert response.content == response2.content

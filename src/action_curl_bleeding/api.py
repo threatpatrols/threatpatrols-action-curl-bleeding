@@ -6,7 +6,7 @@
 from threatpatrols_action.api import load_api_app
 
 from . import config
-from .actions.curl import curl_bleeding
+from .action.curl import curl_bleeding
 
 # Get the app
 api_app = load_api_app(config=config, action=curl_bleeding)

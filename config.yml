@@ -1,28 +1,24 @@
 
-default:
+action:
 
-  api_keys:
+  state:
+    type: "filesystem"
+    params: { root_path: "/tmp/tpas" }
+    calls:
+      ttl_seconds: 7200
+    tasks:
+      ttl_seconds: 7200
 
-    # ab0a47950474.d36af432e5cd11efab1f0be971aff96c
-    - id: ab0a47950474
-      secret: d36af432e5cd11efab1f0be971aff96c
+  cli: {}
+
+  api: {}
+
+  credentials:
+    # auth_token == internal-microservice.demo-secret-CHANGE-ME-PLEASE-alphanumeric
+    internal-microservice:
+      secret: demo-secret-CHANGE-ME-PLEASE-alphanumeric
       tags:
+        comment: "User 12345 from the Foo system"
+        other_data: "This is a free-form tag value"
         other_system_name: foo
         other_system_user_id: 12345
-        comment: "User 12345 from the Foo system"
-
-    # 17b76a523d9e.d8a6133ce5cd11ef8af103c7dabf79f7
-    - id: 17b76a523d9e
-      secret: d8a6133ce5cd11ef8af103c7dabf79f7
-      tags:
-        other_system_name: bar
-        other_system_user_id: 54321
-        comment: "User 54321 from the Bar system"
-
-    # b34b3051f9af.dd2e3092e5cd11ef877707f878a16a84
-    - id: b34b3051f9af
-      secret: dd2e3092e5cd11ef877707f878a16a84
-      tags:
-        other_system_name: catdog
-        other_system_user_id: 48884
-        comment: "Lucky user 48884 from the Cat-Dog system"

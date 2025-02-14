@@ -83,6 +83,8 @@ def curl_bleeding(
             if "Issue another request to this URL" in stdout:
                 response_headers = {}
 
+    print(f"{tags=}")
+
     return action_models.ActionResponse(
         url=url,
         content_b64=base64.b64encode(content).decode("utf8"),

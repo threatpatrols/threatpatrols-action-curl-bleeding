@@ -34,6 +34,7 @@ psutil = "*"                    # https://pypi.org/project/psutil/#history
 pydantic = "*"                  # https://pypi.org/project/pydantic/#history
 pydantic-core = "*"             # https://pypi.org/project/pydantic-core/#history
 typing = "*"                    # https://pypi.org/project/typing/#history
+hlid = "*"                      # https://pypi.org/project/hlid/#history
 # action dependencies
 uvicorn = "*"                   # https://pypi.org/project/uvicorn/#history
 
@@ -78,7 +79,7 @@ api-server = """
         --proxy-headers \
         --host 0.0.0.0 \
         --port 11235 \
-        action_curl_bleeding.api:app
+        action_curl_bleeding.api:api_app
 """
 
 [tool.mypy]

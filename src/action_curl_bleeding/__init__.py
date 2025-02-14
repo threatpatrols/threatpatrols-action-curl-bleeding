@@ -3,12 +3,12 @@
 #  See LICENSE.md for terms
 #
 
-__title__ = "Curl Bleeding Actions"
+__title__ = "Curl Bleeding Action"
 __version__ = "0.1.0"
 
 from threatpatrols_action import action_models, config
 
-from .actions.models import ActionListItemResponse, ActionRequest, ActionResponse
+from .action.models import ActionListItemResponse, ActionRequest, ActionResponse
 
 config.TITLE = __title__
 config.VERSION = __version__
