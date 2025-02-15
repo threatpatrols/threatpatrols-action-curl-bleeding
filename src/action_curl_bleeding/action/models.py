@@ -2,10 +2,10 @@ from typing import Optional
 
 from pydantic import ConfigDict
 
-from threatpatrols_action.shared.models import ActionBaseModel
+from threatpatrols_action.shared.models import TagsBaseModel
 
 
-class ActionRequestCurlBleeding(ActionBaseModel):
+class ActionRequestCurlBleeding(TagsBaseModel):
 
     url: str
     referer: Optional[str] = None
@@ -26,7 +26,7 @@ class ActionRequestCurlBleeding(ActionBaseModel):
     )
 
 
-class ActionResponseCurlBleeding(ActionBaseModel):
+class ActionResponseCurlBleeding(TagsBaseModel):
     url: Optional[str] = None
 
     content_b64: Optional[str] = None
@@ -45,7 +45,7 @@ class ActionResponseCurlBleeding(ActionBaseModel):
     error_messages: Optional[list[str]] = None
 
 
-class ActionListItemResponseCurlBleeding(ActionBaseModel):
+class ActionListItemResponseCurlBleeding(TagsBaseModel):
     url: Optional[str] = None
     content_length: Optional[int] = None
     redirects: Optional[list[str]] = None
