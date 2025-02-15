@@ -8,12 +8,12 @@ __version__ = "0.1.0"
 
 from threatpatrols_action import action_models, config
 
-from .action.models import ActionListItemResponse, ActionRequest, ActionResponse
+from .action.models import ActionListItemResponseCurlBleeding, ActionRequestCurlBleeding, ActionResponseCurlBleeding
 
 config.TITLE = __title__
 config.VERSION = __version__
 config.ACTION_NAME = "curl-bleeding"
 
-action_models.ActionRequest = ActionRequest
-action_models.ActionResponse = ActionResponse
-action_models.ActionListItemResponse = ActionListItemResponse
+action_models.ActionRequest = ActionRequestCurlBleeding
+action_models.ActionResponse = ActionResponseCurlBleeding
+action_models.ActionListItemResponse = ActionListItemResponseCurlBleeding

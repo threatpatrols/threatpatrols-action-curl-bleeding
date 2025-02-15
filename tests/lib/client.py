@@ -15,7 +15,7 @@ class HttpxClient:
 
     @property
     def user_agent(self) -> str:
-        return f"tpas-test/0.0.0"
+        return "tpas-test/0.0.0"
 
     def get(self, **kwargs):
         return self.request(method="GET", **kwargs)

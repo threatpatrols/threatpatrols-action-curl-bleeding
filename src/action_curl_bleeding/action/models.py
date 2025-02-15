@@ -1,19 +1,11 @@
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import ConfigDict
+
+from threatpatrols_action.shared.models import ActionBaseModel
 
 
-class ActionBaseModel(BaseModel):
-
-    # tags is always required
-    tags: Optional[dict[str, str]] = None
-
-    def model_post_init(self, *_, **__) -> None:
-        if not self.tags:
-            self.tags = {}
-
-
-class ActionRequest(ActionBaseModel):
+class ActionRequestCurlBleeding(ActionBaseModel):
 
     url: str
     referer: Optional[str] = None
@@ -34,7 +26,7 @@ class ActionRequest(ActionBaseModel):
     )
 
 
-class ActionResponse(ActionBaseModel):
+class ActionResponseCurlBleeding(ActionBaseModel):
     url: Optional[str] = None
 
     content_b64: Optional[str] = None
@@ -53,7 +45,7 @@ class ActionResponse(ActionBaseModel):
     error_messages: Optional[list[str]] = None
 
 
-class ActionListItemResponse(ActionBaseModel):
+class ActionListItemResponseCurlBleeding(ActionBaseModel):
     url: Optional[str] = None
     content_length: Optional[int] = None
     redirects: Optional[list[str]] = None
