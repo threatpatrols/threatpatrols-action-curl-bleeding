@@ -2,10 +2,10 @@ from typing import Optional
 
 from pydantic import ConfigDict
 
-from threatpatrols_action.shared.models import TagsBaseModel
+from threatpatrols_action.shared.models import PrivateHandleBaseModel
 
 
-class ActionRequestCurlBleeding(TagsBaseModel):
+class ActionRequestCurlBleeding(PrivateHandleBaseModel):
 
     url: str
     referer: Optional[str] = None
@@ -18,15 +18,15 @@ class ActionRequestCurlBleeding(TagsBaseModel):
             "example": {
                 "url": "https://google.com",
                 "referer": "https://www.google.com/",
-                "user_agent": None,
-                "proxy": None,
+                "user_agent": "ActionRequestCurlBleeding/0.0.0",
+                "proxy": "socks5://127.0.0.1:1080",
                 "_tags": {"foo": "bar"},
             }
         },
     )
 
 
-class ActionResponseCurlBleeding(TagsBaseModel):
+class ActionResponseCurlBleeding(PrivateHandleBaseModel):
     url: Optional[str] = None
 
     content_b64: Optional[str] = None
@@ -45,7 +45,7 @@ class ActionResponseCurlBleeding(TagsBaseModel):
     error_messages: Optional[list[str]] = None
 
 
-class ActionListItemResponseCurlBleeding(TagsBaseModel):
+class ActionListItemResponseCurlBleeding(PrivateHandleBaseModel):
     url: Optional[str] = None
     content_length: Optional[int] = None
     redirects: Optional[list[str]] = None
