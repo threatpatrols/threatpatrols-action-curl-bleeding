@@ -1,8 +1,11 @@
+import json
 from typing import Optional
 
 from pydantic import ConfigDict
 
 from threatpatrols_action.shared.models import PrivateHandleBaseModel
+
+from . import ACTION_LIST_ITEM_RESPONSE_EXAMPLE, ACTION_REQUEST_EXAMPLE, ACTION_RESPONSE_EXAMPLE
 
 
 class ActionRequestCurlBleeding(PrivateHandleBaseModel):
@@ -12,18 +15,7 @@ class ActionRequestCurlBleeding(PrivateHandleBaseModel):
     user_agent: Optional[str] = None
     proxy: Optional[str] = None
 
-    model_config = ConfigDict(
-        extra="allow",
-        json_schema_extra={
-            "example": {
-                "url": "https://google.com",
-                "referer": "https://www.google.com/",
-                "user_agent": "ActionRequestCurlBleeding/0.0.0",
-                "proxy": "socks5://127.0.0.1:1080",
-                "_tags": {"foo": "bar"},
-            }
-        },
-    )
+    model_config = ConfigDict(extra="allow", json_schema_extra={"example": json.loads(ACTION_REQUEST_EXAMPLE)})
 
 
 class ActionResponseCurlBleeding(PrivateHandleBaseModel):
@@ -44,9 +36,15 @@ class ActionResponseCurlBleeding(PrivateHandleBaseModel):
     log_messages: Optional[list[str]] = None
     error_messages: Optional[list[str]] = None
 
+    model_config = ConfigDict(extra="allow", json_schema_extra={"example": json.loads(ACTION_RESPONSE_EXAMPLE)})
+
 
 class ActionListItemResponseCurlBleeding(PrivateHandleBaseModel):
     url: Optional[str] = None
     content_length: Optional[int] = None
     redirects: Optional[list[str]] = None
     status_code: Optional[int] = None
+
+    model_config = ConfigDict(
+        extra="allow", json_schema_extra={"example": json.loads(ACTION_LIST_ITEM_RESPONSE_EXAMPLE)}
+    )
