@@ -13,14 +13,14 @@ class ActionRequestCurlBleeding(TagsBaseModel):
     proxy: Optional[str] = None
 
     model_config = ConfigDict(
-        extra="forbid",
+        extra="allow",
         json_schema_extra={
             "example": {
                 "url": "https://google.com",
                 "referer": "https://www.google.com/",
                 "user_agent": None,
                 "proxy": None,
-                "tags": {"foo": "bar"},
+                "_tags": {"foo": "bar"},
             }
         },
     )

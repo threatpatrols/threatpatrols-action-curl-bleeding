@@ -17,7 +17,6 @@ def curl_bleeding(
     referer: Optional[str] = None,
     user_agent: Optional[str] = None,
     proxy: Optional[str] = None,
-    tags: Optional[dict[str, str]] = None,
 ) -> action_models.ActionResponse:
 
     if not url:
@@ -44,7 +43,7 @@ def curl_bleeding(
             args.append(user_agent)
         args.append(str(url))
 
-        result = execute_command(ExecuteCommand(CURL_BINARY, args=args))
+        result = execute_command(ExecuteCommand(CURL_BINARY, args=args, timeout=15))
         with open(temp_file.name, "rb") as f:
             content = f.read()
 
@@ -95,7 +94,6 @@ def curl_bleeding(
         response_headers=response_headers,
         status_code=status_code,
         log_messages=log_messages,
-        tags=tags,
     )
 
 
