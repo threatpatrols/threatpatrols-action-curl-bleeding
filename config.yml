@@ -2,8 +2,9 @@
 action:
 
   state:
-    type: "filesystem"
-    params: { root_path: "/tmp/tpas" }
+    method: "filesystem"
+    params:
+      root_path: "/tmp/tpas"
     calls:
       ttl_seconds: 7200
     tasks:
