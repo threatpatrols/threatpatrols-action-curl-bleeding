@@ -3,7 +3,6 @@ from hashlib import sha256
 from tempfile import NamedTemporaryFile
 from typing import Optional
 
-from threatpatrols_action.exceptions import ThreatPatrolsException
 from threatpatrols_action.shared.lib.execute_command import ExecuteCommand, execute_command
 
 from .. import action_models, config
@@ -16,19 +15,9 @@ def curl_bleeding(
     url: str,
     referer: Optional[str] = None,
     user_agent: Optional[str] = None,
+    headers: Optional[dict[str, str]] = None,
     proxy: Optional[str] = None,
-) -> action_models.ActionResponse:
-
-    if not url:
-        raise ThreatPatrolsException("CurlImpersonate(): url not set in collect")
-
-    content_mime = None
-    content_encoding = None
-    request_headers = {}
-    response_headers = {}
-    status_code = None
-    log_messages = []
-    redirects = []
+) -> action_models.ActionItem:
 
     with NamedTemporaryFile(prefix=TEMP_FILE_PREFIX + "-") as temp_file:
         args = ["--silent", "-vvv", "--location", "--output", temp_file.name, "--request", "GET"]
@@ -41,17 +30,29 @@ def curl_bleeding(
         if user_agent:
             args.append("--user-agent")
             args.append(user_agent)
+        if headers:
+            for header_key, header_value in headers.items():
+                args.append("--header")
+                args.append(f"{header_key}: {header_value}")
         args.append(str(url))
 
         result = execute_command(ExecuteCommand(CURL_BINARY, args=args, timeout=15))
         with open(temp_file.name, "rb") as f:
             content = f.read()
 
+    content_mime = None
+    content_encoding = None
+    request_headers = {}
+    response_headers = {}
+    status_code = None
+    log_messages = []
+    redirects = []
+
     if result.returncode != 0:
         error_messages = [f"{CURL_BINARY} terminated with non-zero exit code."]
         if result.stderr:
             error_messages.append(result.stderr.decode("utf8"))
-        return action_models.ActionResponse(url=url, error_messages=error_messages)
+        return action_models.ActionItem(url=url, error_messages=error_messages)
 
     for stdout in result.stdout.decode("utf8").replace("\r", "").split("\n"):
 
@@ -82,7 +83,7 @@ def curl_bleeding(
             if "Issue another request to this URL" in stdout:
                 response_headers = {}
 
-    return action_models.ActionResponse(
+    return action_models.ActionItem(
         url=url,
         content_b64=base64.b64encode(content).decode("utf8"),
         content_mime=content_mime,

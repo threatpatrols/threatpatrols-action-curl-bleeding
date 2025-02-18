@@ -8,7 +8,7 @@ ACTION_REQUEST_EXAMPLE = """
 }
 """
 
-ACTION_LIST_ITEM_RESPONSE_EXAMPLE = """
+ACTION_LIST_ITEM_EXAMPLE = """
   {
     "url": "https://google.com",
     "content_length": 18604,
@@ -22,7 +22,7 @@ ACTION_LIST_ITEM_RESPONSE_EXAMPLE = """
   }
 """
 
-ACTION_RESPONSE_EXAMPLE = """
+ACTION_ITEM_EXAMPLE = """
 {
   "url": "https://google.com",
   "content_b64": "[truncated]",
