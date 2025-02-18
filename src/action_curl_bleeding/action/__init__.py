@@ -1,8 +1,9 @@
 ACTION_REQUEST_EXAMPLE = """
 {
-  "url": "https://google.com",
+  "url": "https://httpbin.org/anything",
   "referer": "https://www.google.com/",
   "user_agent": "ActionRequestCurlBleeding/0.0.0",
+  "headers": {"Accept-Encoding": "gzip"},
   "proxy": "socks5://127.0.0.1:1080",
   "_tags": {"foo": "bar"}
 }
@@ -17,7 +18,8 @@ ACTION_LIST_ITEM_EXAMPLE = """
     "_tags": {
       "action_name": "curl-bleeding",
       "api_key_id": "testing",
-      "call_id": "20250216-1339-5142-5700-55fa0930637d"
+      "call_id": "20250216-1339-5142-5700-55fa0930637d",
+      "request_id": "2218905dfb92477e-TPX"
     }
   }
 """
