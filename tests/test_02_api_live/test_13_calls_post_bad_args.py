@@ -3,6 +3,7 @@ import uuid
 from .. import AUTH_TOKEN, BASE_ACTION, BASE_URL
 from . import HttpxClient
 
+
 def test_calls_post_no_tag():
 
     content_type = "application/json"

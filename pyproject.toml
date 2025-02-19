@@ -20,6 +20,7 @@ keywords = []
 # Repository = ""
 
 [tool.poetry.scripts]
+tpas-curl = "action_curl_bleeding.cli:entrypoint"
 
 
 [tool.poetry.dependencies]
