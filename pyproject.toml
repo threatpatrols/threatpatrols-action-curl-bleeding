@@ -36,6 +36,7 @@ pydantic = "*"                  # https://pypi.org/project/pydantic/#history
 pydantic-core = "*"             # https://pypi.org/project/pydantic-core/#history
 typing = "*"                    # https://pypi.org/project/typing/#history
 hlid = "*"                      # https://pypi.org/project/hlid/#history
+rich = "*"                      # https://pypi.org/project/rich/#history
 # action dependencies
 uvicorn = "*"                   # https://pypi.org/project/uvicorn/#history
 
