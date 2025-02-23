@@ -11,4 +11,4 @@ from .action.curl import curl_bleeding
 
 def entrypoint():
     cli_app = load_cli_app(config=config, action=curl_bleeding)
-    cli_app.run()
+    cli_app()
