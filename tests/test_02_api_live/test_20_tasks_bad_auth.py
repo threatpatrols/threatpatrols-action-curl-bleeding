@@ -2,8 +2,8 @@ import uuid
 
 from hlid import HLID
 
-from .. import BASE_ACTION, BASE_URL
-from . import HttpxClient
+from .. import BASE_ACTION
+from . import BASE_URL, HttpxClient
 
 
 def test_tasks_bad_auth_tasks_get():

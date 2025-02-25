@@ -10,10 +10,6 @@ action:
     tasks:
       ttl_seconds: 7200
 
-  cli: {}
-
-  api: {}
-
   credentials:
     # auth_token == internal-microservice.demo-secret-CHANGE-ME-PLEASE-alphanumeric
     internal-microservice:

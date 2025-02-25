@@ -20,7 +20,7 @@ keywords = []
 # Repository = ""
 
 [tool.poetry.scripts]
-tpas-curl = "action_curl_bleeding.cli:entrypoint"
+tpas-curl-bleeding = "action_curl_bleeding.cli:entrypoint"
 
 
 [tool.poetry.dependencies]
@@ -81,7 +81,7 @@ api-server = """
         --proxy-headers \
         --host 0.0.0.0 \
         --port 11235 \
-        action_curl_bleeding.api:api_app
+        action_curl_bleeding.api:entrypoint
 """
 
 [tool.mypy]

@@ -1,5 +1,4 @@
-from .. import BASE_URL
-from . import HttpxClient
+from . import BASE_URL, HttpxClient
 
 
 def test_health():

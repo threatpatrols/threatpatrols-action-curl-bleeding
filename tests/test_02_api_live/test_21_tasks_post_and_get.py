@@ -1,7 +1,7 @@
 import uuid
 
-from .. import AUTH_TOKEN, BASE_ACTION, BASE_URL
-from . import HttpxClient
+from .. import BASE_ACTION
+from . import AUTH_TOKEN, BASE_URL, HttpxClient
 
 
 def test_tasks_post_and_get():
