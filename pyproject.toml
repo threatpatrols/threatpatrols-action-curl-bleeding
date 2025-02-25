@@ -73,7 +73,7 @@ pytest = "pytest tests/ -vv"
 format = "pycln src/ tests/ && black src/ tests/ && isort src/ tests/"
 api-server = """
     cd src;
-    TPAS_DEBUG=yes \
+    TPAS_DEBUG=true \
     TPAS_CONFIG_FILE=config.yml \
     uvicorn \
         --reload \

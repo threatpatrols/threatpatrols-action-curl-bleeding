@@ -11,9 +11,9 @@ action:
       ttl_seconds: 7200
 
   credentials:
-    # auth_token == internal-microservice.demo-secret-CHANGE-ME-PLEASE-alphanumeric
-    internal-microservice:
-      secret: demo-secret-CHANGE-ME-PLEASE-alphanumeric
+    # Bearer Token: exampleuser01.test-secret-CHANGE-ME-PLEASE-alphanumeric
+    exampleuser01:  # NB: the 'exampleuser01' key-name is hardcoded to be prevented when non-debug mode.
+      secret: test-secret-CHANGE-ME-PLEASE-alphanumeric
       tags:
         comment: "User 12345 from the Foo system"
         other_data: "This is a free-form tag value"

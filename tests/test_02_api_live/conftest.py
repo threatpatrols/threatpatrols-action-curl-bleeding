@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from . import SERVER_PORT
+from . import AUTH_TOKEN_KEY, AUTH_TOKEN_SECRET, SERVER_PORT
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -23,7 +23,12 @@ def api_server():
             f"{SERVER_PORT}",
             "action_curl_bleeding.api:entrypoint",
         ],
-        env={"TPAS_DEBUG": "yes", "TPAS_CONFIG_FILE": "config.yml", "PATH": os.getenv("PATH")},
+        env={
+            "TPAS_DEBUG": "yes",
+            "TPAS_CONFIG_FILE": "config.yml",
+            "PATH": os.getenv("PATH"),
+            f"TPAS_CREDENTIALS__{AUTH_TOKEN_KEY}__SECRET": AUTH_TOKEN_SECRET,
+        },
         cwd=str(Path(__file__).parent.parent.parent / "src"),
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
