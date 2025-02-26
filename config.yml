@@ -1,6 +1,69 @@
 
 action:
 
+  callbacks:
+
+    http:
+      http01example-post:
+        url: https://httpbin.org/anything/test-example-post
+        method: POST
+        headers:
+          Authentication: "Bearer testing-test-example-post-value"
+        verify: false
+        send: summary
+      http02example-get:
+        url: https://httpbin.org/anything/test-example-get/?action_name={action_name}&call_id={call_id}
+        method: POST
+        send: summary
+        headers:
+          Authentication: "Bearer testing-test-example-get-value"
+
+#    s3put:
+#      s3put01example-summary:
+#        url: "https://localhost"
+#        path: {action_name}/{call_id_prefix}/{call_id}
+#        verify: true
+#        send: summary
+#      s3put01example-output:
+#        url: "https://localhost"
+#        path: {action_name}/{call_id_prefix}/{call_id}
+#        verify: false
+#        send: output
+
+#    slack:
+#      slack01example:
+#        url:
+#        path:
+#        message: |
+#          {action_name} | call:{call_id} task:{task_id} callback:{callback_key_name}
+
+#    smtp:
+#      smtp01example:
+#        host:
+#        port:
+#        user:
+#        pass:
+#        email_to:
+#        email_from:
+#        email_subject: "{action_name} | call:{call_id} task:{task_id} callback:{callback_key_name}"
+#        email_content: |
+#          {action_name}
+#          {summary.as_table}
+#        send: [input, output]
+#
+#    threatpatrols:
+#      auth_token: "<threatpatrols-api-token-for-continuous-threat-management>"
+
+  credentials:
+    # Bearer Token: credential01example.test-secret-CHANGE-ME-PLEASE-alphanumeric
+    credential01example:  # NB: this 'credential01example' key-name is hardcoded to terminate when non-debug mode.
+      secret: test-secret-CHANGE-ME-PLEASE-alphanumeric
+      tags:
+        comment: "User 12345 from the Foo system"
+        other_data: "This is a free-form tag value"
+        other_system_name: foo
+        other_system_user_id: 12345
+
   state:
     method: "filesystem"
     params:
@@ -9,13 +72,3 @@ action:
       ttl_seconds: 7200
     tasks:
       ttl_seconds: 7200
-
-  credentials:
-    # Bearer Token: exampleuser01.test-secret-CHANGE-ME-PLEASE-alphanumeric
-    exampleuser01:  # NB: the 'exampleuser01' key-name is hardcoded to be prevented when non-debug mode.
-      secret: test-secret-CHANGE-ME-PLEASE-alphanumeric
-      tags:
-        comment: "User 12345 from the Foo system"
-        other_data: "This is a free-form tag value"
-        other_system_name: foo
-        other_system_user_id: 12345

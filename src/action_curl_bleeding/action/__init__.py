@@ -9,7 +9,7 @@ ACTION_REQUEST_EXAMPLE = """
 }
 """
 
-ACTION_LIST_ITEM_EXAMPLE = """
+ACTION_ITEM_SUMMARY_EXAMPLE = """
   {
     "url": "https://google.com",
     "content_length": 18604,

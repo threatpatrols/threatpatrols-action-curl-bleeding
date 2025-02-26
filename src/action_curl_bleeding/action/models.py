@@ -5,7 +5,7 @@ from pydantic import ConfigDict
 
 from threatpatrols_action.shared.models import BaseModelPrivateHandler
 
-from . import ACTION_ITEM_EXAMPLE, ACTION_LIST_ITEM_EXAMPLE, ACTION_REQUEST_EXAMPLE
+from . import ACTION_ITEM_EXAMPLE, ACTION_ITEM_SUMMARY_EXAMPLE, ACTION_REQUEST_EXAMPLE
 
 
 class ActionRequestCurlBleeding(BaseModelPrivateHandler):
@@ -40,10 +40,10 @@ class ActionItemCurlBleeding(BaseModelPrivateHandler):
     model_config = ConfigDict(extra="allow", json_schema_extra={"example": json.loads(ACTION_ITEM_EXAMPLE)})
 
 
-class ActionListItemCurlBleeding(BaseModelPrivateHandler):
+class ActionItemSummaryCurlBleeding(BaseModelPrivateHandler):
     url: Optional[str] = None
     content_length: Optional[int] = None
     redirects: Optional[list[str]] = None
     status_code: Optional[int] = None
 
-    model_config = ConfigDict(extra="allow", json_schema_extra={"example": json.loads(ACTION_LIST_ITEM_EXAMPLE)})
+    model_config = ConfigDict(extra="allow", json_schema_extra={"example": json.loads(ACTION_ITEM_SUMMARY_EXAMPLE)})

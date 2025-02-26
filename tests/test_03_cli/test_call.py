@@ -19,6 +19,24 @@ def test_call():
     assert "call_id" in data.get("_tags").keys()
 
 
+def test_call_w_callback():
+
+    url = "https://google.com"
+
+    stdout, stderr, rc = exec_command(
+        "tpas-curl-bleeding", args=["call", "--url", url, "--tpas-callback", "http.http01example-post"]
+    )
+    assert rc == 0
+    assert "error" not in stderr.decode().lower()
+
+    data = json.loads(stdout)
+    assert data.get("status_code") == 200
+    assert data.get("url") == url
+
+    assert "_tags" in data.keys()
+    assert "call_id" in data.get("_tags").keys()
+
+
 def test_call_get():
 
     url = "https://google.com"

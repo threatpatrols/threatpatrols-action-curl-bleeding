@@ -10,6 +10,11 @@ from . import AUTH_TOKEN_KEY, AUTH_TOKEN_SECRET, SERVER_PORT
 
 @pytest.fixture(scope="session", autouse=True)
 def api_server():
+
+    if SERVER_PORT == 11235:  # use manually running dev-server
+        yield
+        return
+
     apiserver_proc = subprocess.Popen(
         [
             "uvicorn",

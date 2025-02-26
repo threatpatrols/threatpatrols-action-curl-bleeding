@@ -24,8 +24,11 @@ tpas-curl-bleeding = "action_curl_bleeding.cli:entrypoint"
 
 
 [tool.poetry.dependencies]
-# base dependencies from threatpatrols_action
 python = "^3.10"
+
+
+[tool.poetry.dev-dependencies]
+# dependencies from threatpatrols_action
 aiofiles = "*"                  # https://pypi.org/project/aiofiles/#history
 asgi-correlation-id = "*"       # https://pypi.org/project/asgi-correlation-id/#history
 dynaconf = "*"                  # https://pypi.org/project/dynaconf/#history
@@ -37,11 +40,10 @@ pydantic-core = "*"             # https://pypi.org/project/pydantic-core/#histor
 typing = "*"                    # https://pypi.org/project/typing/#history
 hlid = "*"                      # https://pypi.org/project/hlid/#history
 rich = "*"                      # https://pypi.org/project/rich/#history
-# action dependencies
+colorama = "*"                  # https://pypi.org/project/colorama/#history
 uvicorn = "*"                   # https://pypi.org/project/uvicorn/#history
 
-
-[tool.poetry.dev-dependencies]
+# pure development dependencies
 black = "*"
 flake8 = "*"
 isort = "*"
