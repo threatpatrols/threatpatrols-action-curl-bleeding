@@ -24,7 +24,7 @@ def test_call_w_callback():
     url = "https://google.com"
 
     stdout, stderr, rc = exec_command(
-        "tpas-curl-bleeding", args=["call", "--url", url, "--tpas-callback", "http.http01example-post"]
+        "tpas-curl-bleeding", args=["call", "--url", url, "--tpas-callback", "http.http01example"]
     )
     assert rc == 0
     assert "error" not in stderr.decode().lower()

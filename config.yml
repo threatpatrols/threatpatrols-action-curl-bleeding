@@ -4,31 +4,29 @@ action:
   callbacks:
 
     http:
-      http01example-post:
-        url: https://httpbin.org/anything/test-example-post
+      http01example:
         method: POST
+        url: https://httpbin.org/anything/test-example-post
         headers:
           Authentication: "Bearer testing-test-example-post-value"
         verify: false
         send: summary
-      http02example-get:
-        url: https://httpbin.org/anything/test-example-get/?action_name={action_name}&call_id={call_id}
-        method: POST
-        send: summary
+      http02example:
+        method: GET
+        url: https://httpbin.org/anything/test-example-get/?action-name={action_name}&call-id={call_id}
         headers:
           Authentication: "Bearer testing-test-example-get-value"
 
-#    s3put:
-#      s3put01example-summary:
-#        url: "https://localhost"
-#        path: {action_name}/{call_id_prefix}/{call_id}
-#        verify: true
-#        send: summary
-#      s3put01example-output:
-#        url: "https://localhost"
-#        path: {action_name}/{call_id_prefix}/{call_id}
-#        verify: false
-#        send: output
+    s3put:
+      s3put01example:
+        url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.summary
+        send: summary
+      s3put02example:
+        url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.output
+        send: output
+      s3put03example:
+        url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.input
+        send: input
 
 #    slack:
 #      slack01example:

@@ -31,26 +31,28 @@ python = "^3.10"
 # dependencies from threatpatrols_action
 aiofiles = "*"                  # https://pypi.org/project/aiofiles/#history
 asgi-correlation-id = "*"       # https://pypi.org/project/asgi-correlation-id/#history
+boto3 = "*"                     # https://pypi.org/project/boto3/#history
+colorama = "*"                  # https://pypi.org/project/colorama/#history
 dynaconf = "*"                  # https://pypi.org/project/dynaconf/#history
 fastapi = "*"                   # https://pypi.org/project/fastapi/#history
+hlid = "*"                      # https://pypi.org/project/hlid/#history
 "httpx[http2]" = "*"            # https://pypi.org/project/httpx/#history
 psutil = "*"                    # https://pypi.org/project/psutil/#history
 pydantic = "*"                  # https://pypi.org/project/pydantic/#history
 pydantic-core = "*"             # https://pypi.org/project/pydantic-core/#history
-typing = "*"                    # https://pypi.org/project/typing/#history
-hlid = "*"                      # https://pypi.org/project/hlid/#history
 rich = "*"                      # https://pypi.org/project/rich/#history
-colorama = "*"                  # https://pypi.org/project/colorama/#history
+typing = "*"                    # https://pypi.org/project/typing/#history
 uvicorn = "*"                   # https://pypi.org/project/uvicorn/#history
 
 # pure development dependencies
 black = "*"
 flake8 = "*"
 isort = "*"
-# mypy = "*"
-pycln = "^2.1.3"
+mypy = "*"
+pycln = "^2.1.3"                # https://pypi.org/project/pycln/#history
 pytest = "*"
 pytest-asyncio = "*"
+types-psutil = "*"
 
 [tool.poetry.plugins."slap.plugins.check"]
 changelog = "slap.ext.checks.changelog:ChangelogValidationCheckPlugin"

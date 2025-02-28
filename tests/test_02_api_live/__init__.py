@@ -2,7 +2,7 @@ import random
 
 from ..lib.client import HttpxClient
 
-DEVLOCAL = False  # Use developer local manually running api server
+DEVLOCAL = True  # Use developer local manually running api server
 DEVLOCAL_KEY = "credential01example"  # see config.yml
 DEVLOCAL_SECRET = "test-secret-CHANGE-ME-PLEASE-alphanumeric"  # see config.yml
 
