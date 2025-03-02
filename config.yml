@@ -36,7 +36,8 @@ action:
            - *status_code*: {status_code}
            - *nodename*: {tag.platform_node}
            - *call_id*: {tag.call_id}
-        send: output
+           - *task_id*: {tag.task_id}
+        send: summary
 
 
 #    smtp:
