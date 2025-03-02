@@ -7,6 +7,5 @@ def test_health():
     assert response.status_code == 200
 
     data = response.json()
-    assert data.get("cpu_usage_p") >= 0 <= 100
-    assert data.get("memory_usage_p") >= 0 <= 100
-    assert data.get("background_tasks") >= 0 < 10000
+    assert data.get("cpu_usage_p") >= 0 <= 1
+    assert data.get("memory_used_p") >= 0 <= 1

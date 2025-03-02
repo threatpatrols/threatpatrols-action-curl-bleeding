@@ -8,14 +8,12 @@ action:
         method: POST
         url: https://httpbin.org/anything/test-example-post
         headers:
-          Authentication: "Bearer testing-test-example-post-value"
+          Authentication: "Bearer ${VALUE_FROM_ENV}"
         verify: false
         send: summary
       http02example:
         method: GET
         url: https://httpbin.org/anything/test-example-get/?action-name={action_name}&call-id={call_id}
-        headers:
-          Authentication: "Bearer testing-test-example-get-value"
 
     s3put:
       s3put01example:
@@ -28,12 +26,18 @@ action:
         url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.input
         send: input
 
-#    slack:
-#      slack01example:
-#        url:
-#        path:
-#        message: |
-#          {action_name} | call:{call_id} task:{task_id} callback:{callback_key_name}
+    slack:
+      slack01example:
+        token: "${SLACK_BOT_TOKEN}"
+        channel: "C082F69DBD2"
+        message: |
+          *{tag.action_title}*
+           - *url*: `{url}`
+           - *status_code*: {status_code}
+           - *nodename*: {tag.platform_node}
+           - *call_id*: {tag.call_id}
+        send: output
+
 
 #    smtp:
 #      smtp01example:
@@ -52,15 +56,16 @@ action:
 #    threatpatrols:
 #      auth_token: "<threatpatrols-api-token-for-continuous-threat-management>"
 
-  credentials:
-    # Bearer Token: credential01example.test-secret-CHANGE-ME-PLEASE-alphanumeric
-    credential01example:  # NB: this 'credential01example' key-name is hardcoded to terminate when non-debug mode.
-      secret: test-secret-CHANGE-ME-PLEASE-alphanumeric
-      tags:
-        comment: "User 12345 from the Foo system"
-        other_data: "This is a free-form tag value"
-        other_system_name: foo
-        other_system_user_id: 12345
+  api:
+    credentials:
+      # Bearer Token: credential01example.test-secret-CHANGE-ME-PLEASE-alphanumeric
+      credential01example:  # NB: this 'credential01example' key-name is hardcoded to terminate when non-debug mode.
+        secret: test-secret-CHANGE-ME-PLEASE-alphanumeric
+        tags:
+          comment: "User 12345 from the Foo system"
+          other_data: "This is a free-form tag value"
+          other_system_name: foo
+          other_system_user_id: 12345
 
   state:
     method: "filesystem"

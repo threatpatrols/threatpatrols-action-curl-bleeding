@@ -25,10 +25,9 @@ def test_calls_post_w_s3put_callbacks():
     assert call_id is not None
 
 
-
 def test_tasks_w_s3put_callbacks():
 
-    callbacks = ["s3put.s3put02example","s3put.s3put03example"]
+    callbacks = ["s3put.s3put02example", "s3put.s3put03example"]
     content_type = "application/json"
     api_headers = {
         "Authorization": f"Bearer {AUTH_TOKEN}",
