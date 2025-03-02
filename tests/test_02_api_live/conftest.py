@@ -32,7 +32,7 @@ def api_server():
             "TPAS_DEBUG": "yes",
             "TPAS_CONFIG_FILE": "config.yml",
             "PATH": os.getenv("PATH"),
-            f"TPAS_CREDENTIALS__{AUTH_TOKEN_KEY}__SECRET": AUTH_TOKEN_SECRET,
+            f"TPAS_API__CREDENTIALS__{AUTH_TOKEN_KEY}__SECRET": AUTH_TOKEN_SECRET,
         },
         cwd=str(Path(__file__).parent.parent.parent / "src"),
         stdout=subprocess.PIPE,
