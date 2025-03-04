@@ -17,3 +17,6 @@ per-file-ignores =
 
     # Module imported but unused (F401) - https://www.flake8rules.com/rules/F401.html
     tests/**.py: F401
+
+    # E402 module level import not at top of file - https://www.flake8rules.com/rules/E402.html
+    src/**/action/models.py: E402

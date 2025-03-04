@@ -6,24 +6,24 @@ action:
     http:
       http01example:
         method: POST
-        url: https://httpbin.org/anything/test-example-post
+        url: "https://httpbin.org/anything/test-example-post"
         headers:
-          Authentication: "Bearer ${VALUE_FROM_ENV}"
+          Authentication: "Bearer ${FAUX_BEARER_AUTH_TOKEN}"
         verify: false
         send: summary
       http02example:
         method: GET
-        url: https://httpbin.org/anything/test-example-get/?action-name={action_name}&call-id={call_id}
+        url: "https://httpbin.org/anything/test-example-get/?action-name={action_name}&call-id={call_id}"
 
     s3put:
       s3put01example:
-        url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.summary
+        url: "s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.summary"
         send: summary
       s3put02example:
-        url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.output
+        url: "s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.out"
         send: output
       s3put03example:
-        url: s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.input
+        url: "s3://threatpatrols-c93f37e6/testing/{action_name}/{call_id_prefix}/{call_id}.in"
         send: input
 
     slack:
@@ -37,23 +37,26 @@ action:
            - *nodename*: {tag.platform_node}
            - *call_id*: {tag.call_id}
            - *task_id*: {tag.task_id}
-        send: summary
-
+        send: report
 
 #    smtp:
 #      smtp01example:
-#        host:
-#        port:
-#        user:
-#        pass:
-#        email_to:
-#        email_from:
-#        email_subject: "{action_name} | call:{call_id} task:{task_id} callback:{callback_key_name}"
+#        host: "${SMTP_HOST}"
+#        port: "${SMTP_PORT}"
+#        user: "${SMTP_USER}"
+#        pass: "${SMTP_PASS}"
+#        email_to: "${SMTP_EMAIL_TO}"
+#        email_from: "{action_title} Testing <testing@threatpatrols.net>"
+#        email_subject: "{action_name} | call:{call_id} task:{task_id} url:{url}"
 #        email_content: |
-#          {action_name}
-#          {summary.as_table}
-#        send: [input, output]
-#
+#          {tag.action_title}
+#           - url: {url}
+#           - status_code: {status_code}
+#           - nodename: {tag.platform_node}
+#           - call_id: {tag.call_id}
+#           - task_id: {tag.task_id}
+#        send: output
+
 #    threatpatrols:
 #      auth_token: "<threatpatrols-api-token-for-continuous-threat-management>"
 

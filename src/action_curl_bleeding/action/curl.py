@@ -61,13 +61,13 @@ def curl_bleeding(
             status_code = int(stdout.split(" ")[2])
 
         # request headers
-        if stdout.startswith("> ") and ":" in stdout and len(stdout) > 3:
+        if stdout.startswith("> ") and ": " in stdout and len(stdout) > 3:
             stdout_split = stdout.split(":", maxsplit=1)
             header = stdout_split[0].strip().replace("> ", "")
             request_headers[header] = stdout_split[1].strip()
 
         # response headers
-        elif stdout.startswith("< ") and ":" in stdout and len(stdout) > 3:
+        elif stdout.startswith("< ") and ": " in stdout and len(stdout) > 3:
             stdout_split = stdout.split(":", maxsplit=1)
             header = stdout_split[0].strip().replace("< ", "")
             response_headers[header] = stdout_split[1].strip()

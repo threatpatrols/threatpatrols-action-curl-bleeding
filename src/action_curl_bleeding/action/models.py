@@ -3,6 +3,11 @@ from typing import Optional
 
 from pydantic import ConfigDict
 
+from .. import action_models
+from .sends import action_callback_sends_map
+
+action_models.ActionCallbackSendsMap = action_callback_sends_map
+
 from threatpatrols_action.shared.models import BaseModelPrivateHandler
 
 from . import ACTION_ITEM_EXAMPLE, ACTION_ITEM_SUMMARY_EXAMPLE, ACTION_REQUEST_EXAMPLE
